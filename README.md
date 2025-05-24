@@ -1,23 +1,22 @@
 DevOps Lab1. Скрипт запроса погоды.
-
 Задание
 
-Написать bash-скрипт, который принимает в качестве входящего параметра город. 
+Написать bash-скрипт, который принимает в качестве входящего параметра город.
 Выводит температуру и влажность в текущий день в этом городе.
-Установить nginx.
+Установить nginx.\
 Скрипт запускать по крону раз в минуту, вывод сохранять в index.html дефолтного сайта.
 Необходимо использовать:
 https://github.com/chubin/wttr.in (json формат)
 библиотека jq для работы с json
 
 Установка необходимых пакетов
-
+```bash
 sudo apt -y install curl nginx jq
-
+```
 Установка прав на запись для скрипта в файл всем /var/www/html/index.nginx-debian.html
-
+```bash
 sudo chmod a+w /var/www/html/index.nginx-debian.html
-
+```
 Создание файла скрипта, установка прав на выполнение
 
 touch weather.sh
@@ -39,13 +38,13 @@ echo "</HTML></BODY>"
 
 
 Создание cron задания
-
+```bash
 crontab -e
-
+```
 Задание crontab
-
+```bash
 * * * * * /home/user/weather.sh Samara > /var/www/html/index.nginx-debian.html 2>> /home/user/wather.err
-
+```
 Проверка через curl (Скрин в приложении)
 
 curl 127.0.0.1
@@ -56,3 +55,5 @@ Sat May 24 01:30:01 PM UTC 2025
 "16"
 "59"
 </HTML></BODY>
+
+![README](screen.png)
